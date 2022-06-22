@@ -3,14 +3,17 @@
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 
-export class ApiError extends Error {
+export class ApiError<
+	StatusCode extends number = number,
+	ApiErrorBody = any,
+> extends Error {
 	public readonly url: string;
-	public readonly status: number;
+	public readonly status: StatusCode;
 	public readonly statusText: string;
-	public readonly body: any;
+	public readonly body: ApiErrorBody;
 	public readonly request: ApiRequestOptions;
 
-	constructor(request: ApiRequestOptions, response: ApiResult, message: string) {
+	constructor(request: ApiRequestOptions, response: ApiResult<StatusCode, ApiErrorBody>, message: string) {
 		super(message);
 
 		this.name = 'ApiError';

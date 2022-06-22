@@ -28,6 +28,21 @@ describe('client.node', () => {
         expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });
 
+    it('can return an Either', async () => {
+        const { ApiClient } = require('./generated/client/node/index.js');
+        const tokenRequest = jest.fn().mockResolvedValue('MY_TOKEN');
+        const client = new ApiClient({
+            TOKEN: tokenRequest,
+            USERNAME: undefined,
+            PASSWORD: undefined,
+        });
+        const resultEither = await client.simple.getCallWithoutParametersAndResponseEither();
+        expect(resultEither._tag).toBe('Right');
+        const result = resultEither.right;
+        expect(tokenRequest.mock.calls.length).toBe(1);
+        expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
+    });
+
     it('uses credentials', async () => {
         const { ApiClient } = require('./generated/client/node/index.js');
         const client = new ApiClient({
@@ -114,6 +129,15 @@ describe('client.node', () => {
                 },
             })
         );
+    });
+
+    it('can return errors as Either', async () => {
+        const { ApiClient } = require('./generated/client/node/index.js');
+        const client = new ApiClient();
+        const result = await client.error.testErrorCodeEither(500);
+        expect(result._tag).toBe('Left');
+        expect(result.left.name).toBe('ApiError');
+        expect(result.left.body.message).toBe('hello world');
     });
 
     it('should throw unknown error (409)', async () => {
