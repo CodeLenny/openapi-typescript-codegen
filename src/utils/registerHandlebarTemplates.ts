@@ -57,6 +57,7 @@ import templateExportSchema from '../templates/exportSchema.hbs';
 import templateExportService from '../templates/exportService.hbs';
 import templateIndex from '../templates/index.hbs';
 import partialBase from '../templates/partials/base.hbs';
+import partialErrorResult from '../templates/partials/errorResult.hbs';
 import partialExportComposition from '../templates/partials/exportComposition.hbs';
 import partialExportEnum from '../templates/partials/exportEnum.hbs';
 import partialExportInterface from '../templates/partials/exportInterface.hbs';
@@ -148,6 +149,7 @@ export const registerHandlebarTemplates = (root: {
     Handlebars.registerPartial('isRequired', Handlebars.template(partialIsRequired));
     Handlebars.registerPartial('parameters', Handlebars.template(partialParameters));
     Handlebars.registerPartial('result', Handlebars.template(partialResult));
+    Handlebars.registerPartial('errorResult', Handlebars.template(partialErrorResult));
     Handlebars.registerPartial('schema', Handlebars.template(partialSchema));
     Handlebars.registerPartial('schemaArray', Handlebars.template(partialSchemaArray));
     Handlebars.registerPartial('schemaDictionary', Handlebars.template(partialSchemaDictionary));

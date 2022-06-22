@@ -25,14 +25,14 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { BaseHttpRequest } from '../core/BaseHttpRequest';
 {{else}}
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
-import { Left, Right, Either } from '../core/ApiResult';
-import { ApiError } from '../core/ApiError';
+import type { Left, Right, Either } from '../core/ApiResult';
+import type { ApiError } from '../core/ApiError';
 {{/equals}}
 {{else}}
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-import { Left, Right, Either } from '../core/ApiResult';
-import { ApiError } from '../core/ApiError';
+import type { Left, Right, Either } from '../core/ApiResult';
+import type { ApiError } from '../core/ApiError';
 {{/if}}
 
 {{#equals @root.httpClient 'angular'}}
@@ -180,7 +180,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 		try {
 			const result: ({{>result}}) = await this.httpRequest.request({
 	{{else}}
-	public async {{{name}}}Either({{>parameters}}): Promise<Either<ApiError, {{>result}}>> {
+	public async {{{name}}}Either({{>parameters}}): Promise<Either<{{>errorResult}}, {{>result}}>> {
 		try {
 			const result: ({{>result}}) = await this.httpRequest.request({
 	{{/equals}}
@@ -190,7 +190,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 		try {
 			const result: ({{>result}}) = await __request(OpenAPI, this.http, {
 	{{else}}
-	public static async {{{name}}}Either({{>parameters}}): Promise<Either<ApiError, {{>result}}>> {
+	public static async {{{name}}}Either({{>parameters}}): Promise<Either<{{>errorResult}}, {{>result}}>> {
 		try {
 			const result: ({{>result}}) = await __request(OpenAPI, {
 	{{/equals}}
@@ -262,9 +262,9 @@ export class {{{name}}}{{{@root.postfix}}} {
 
 			return right;
 		} catch (e) {
-			const left: Left<ApiError> = {
+			const left: Left<{{>errorResult}}> = {
 				_tag: 'Left',
-				left: e as ApiError,
+				left: e as ({{>errorResult}}),
 			};
 
 			return left;

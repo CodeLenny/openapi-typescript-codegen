@@ -44,6 +44,7 @@ export const getOperation = (
         imports: [],
         errors: [],
         results: [],
+        errorResults: [],
         responseHeader: null,
     };
 
