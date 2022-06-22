@@ -9,6 +9,41 @@ const areEqual = (a: Model, b: Model): boolean => {
     return equal;
 };
 
+export const getOperationErrorResults = (operationResponses: OperationResponse[]): OperationResponse[] => {
+    const operationResults: OperationResponse[] = [];
+
+    operationResponses.forEach(operationResponse => {
+        const { code } = operationResponse;
+        if (code && (code === 204 || code < 200 || code >= 300)) {
+            operationResults.push(operationResponse);
+        }
+    });
+
+    if (!operationResults.length) {
+        operationResults.push({
+            in: 'response',
+            name: '',
+            code: 0,
+            description: '',
+            export: 'generic',
+            type: 'any',
+            base: 'any',
+            template: null,
+            link: null,
+            isDefinition: false,
+            isReadOnly: false,
+            isRequired: false,
+            isNullable: false,
+            imports: [],
+            enum: [],
+            enums: [],
+            properties: [],
+        });
+    }
+
+    return operationResults;
+};
+
 export const getOperationResults = (operationResponses: OperationResponse[]): OperationResponse[] => {
     const operationResults: OperationResponse[] = [];
 

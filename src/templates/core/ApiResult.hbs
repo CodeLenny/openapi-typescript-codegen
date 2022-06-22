@@ -1,9 +1,24 @@
 {{>header}}
 
-export type ApiResult = {
+export type ApiResult<
+	StatusCode extends number = number,
+	ApiErrorBody = any,
+> = {
 	readonly url: string;
 	readonly ok: boolean;
-	readonly status: number;
+	readonly status: StatusCode;
 	readonly statusText: string;
-	readonly body: any;
+	readonly body: ApiErrorBody;
 };
+
+export interface Left<E> {
+	readonly _tag: 'Left';
+	readonly left: E;
+}
+
+export interface Right<A> {
+	readonly _tag: 'Right';
+	readonly right: A;
+}
+
+export type Either<E, A> = Left<E> | Right<A>;

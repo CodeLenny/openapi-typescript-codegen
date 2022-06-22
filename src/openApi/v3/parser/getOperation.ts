@@ -9,7 +9,7 @@ import { getOperationParameters } from './getOperationParameters';
 import { getOperationRequestBody } from './getOperationRequestBody';
 import { getOperationResponseHeader } from './getOperationResponseHeader';
 import { getOperationResponses } from './getOperationResponses';
-import { getOperationResults } from './getOperationResults';
+import { getOperationErrorResults, getOperationResults } from './getOperationResults';
 import { getRef } from './getRef';
 import { getServiceName } from './getServiceName';
 import { sortByRequired } from './sortByRequired';
@@ -44,6 +44,7 @@ export const getOperation = (
         imports: [],
         errors: [],
         results: [],
+        errorResults: [],
         responseHeader: null,
     };
 
@@ -72,11 +73,17 @@ export const getOperation = (
     if (op.responses) {
         const operationResponses = getOperationResponses(openApi, op.responses);
         const operationResults = getOperationResults(operationResponses);
+        const operationErrorResults = getOperationErrorResults(operationResponses);
         operation.errors = getOperationErrors(operationResponses);
         operation.responseHeader = getOperationResponseHeader(operationResults);
 
         operationResults.forEach(operationResult => {
             operation.results.push(operationResult);
+            operation.imports.push(...operationResult.imports);
+        });
+
+        operationErrorResults.forEach(operationResult => {
+            operation.errorResults.push(operationResult);
             operation.imports.push(...operationResult.imports);
         });
     }
