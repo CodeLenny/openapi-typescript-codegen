@@ -67,7 +67,7 @@ import type { OpenAPIConfig } from './OpenAPI';
  * @returns CancelablePromise<T>
  * @throws ApiError
  */
-export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): CancelablePromise<T> => {
+export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions, fetchFunction?: typeof fetch): CancelablePromise<T> => {
 	return new CancelablePromise(async (resolve, reject, onCancel) => {
 		try {
 			const url = getUrl(config, options);
@@ -76,7 +76,7 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
 			const headers = await getHeaders(config, options);
 
 			if (!onCancel.isCancelled) {
-				const response = await sendRequest(options, url, body, formData, headers, onCancel);
+				const response = await sendRequest(options, url, body, formData, headers, onCancel, fetchFunction);
 				const responseBody = await getResponseBody(response);
 				const responseHeader = getResponseHeader(response, options.responseHeader);
 

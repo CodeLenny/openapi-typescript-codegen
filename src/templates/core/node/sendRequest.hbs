@@ -4,7 +4,8 @@ export const sendRequest = async (
 	body: any,
 	formData: FormData | undefined,
 	headers: Headers,
-	onCancel: OnCancel
+	onCancel: OnCancel,
+	fetchFunction: typeof fetch = fetch
 ): Promise<Response> => {
 	const controller = new AbortController();
 
@@ -17,5 +18,5 @@ export const sendRequest = async (
 
 	onCancel(() => controller.abort());
 
-	return await fetch(url, request);
+	return await fetchFunction(url, request);
 };

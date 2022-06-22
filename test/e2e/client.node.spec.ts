@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import { cleanup } from './scripts/cleanup';
 import { compileWithTypescript } from './scripts/compileWithTypescript';
 import { generateClient } from './scripts/generateClient';
@@ -146,5 +147,33 @@ describe('client.node', () => {
                 },
             })
         );
+    });
+
+    it('can override fetch', async () => {
+        const tokenRequest = jest.fn().mockResolvedValue('MY_TOKEN');
+        const { ApiClient, BaseHttpRequest } = require('./generated/client/node/index.js');
+        const { request } = require('./generated/client/node/core/request');
+        const customFetch = jest.fn().mockImplementation((url, init) => fetch(url, init));
+        class MockHttpRequest extends BaseHttpRequest {
+            constructor(config) {
+                super(config);
+            }
+
+            public request<T>(options) {
+                return request(this.config, options, customFetch);
+            }
+        }
+        const client = new ApiClient(
+            {
+                TOKEN: tokenRequest,
+                USERNAME: undefined,
+                PASSWORD: undefined,
+            },
+            MockHttpRequest
+        );
+        const result = await client.simple.getCallWithoutParametersAndResponse();
+        expect(tokenRequest.mock.calls.length).toBe(1);
+        expect(customFetch.mock.calls.length).toBe(1);
+        expect(result.headers.authorization).toBe('Bearer MY_TOKEN');
     });
 });
