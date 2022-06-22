@@ -1,8 +1,5 @@
 {{~#if errorResults~}}
-{{#each results}}ApiError<
-	{{#equals code 0}}number{{else}}{{{code}}}{{/equals}},
-	{{type}}
->{{#unless @last}} | {{/unless}}{{/each}}
+{{#each errorResults}}ApiError<{{#equals code 0}}number{{else}}{{{code}}}{{/equals}}, {{type}}>{{#unless @last}} | {{/unless}}{{/each}}
 {{~else~}}
 ApiError<number, any>
 {{~/if~}}

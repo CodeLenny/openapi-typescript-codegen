@@ -2409,10 +2409,7 @@ export class ComplexService {
             };
         },
         parameterReference: ModelWithString,
-    ): Promise<Either<ApiError<
-    200,
-    ModelWithString
-    >, Array<ModelWithString>>> {
+    ): Promise<Either<ApiError<400, any> | ApiError<500, any>, Array<ModelWithString>>> {
         try {
             const result: (Array<ModelWithString>) = await __request(OpenAPI, {
                 method: 'GET',
@@ -2434,15 +2431,9 @@ export class ComplexService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            ModelWithString
-            >> = {
+            const left: Left<ApiError<400, any> | ApiError<500, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                ModelWithString
-                >),
+                left: e as (ApiError<400, any> | ApiError<500, any>),
             };
 
             return left;
@@ -3077,10 +3068,7 @@ export class ErrorService {
      */
     public static async testErrorCodeEither(
         status: string,
-    ): Promise<Either<ApiError<
-    200,
-    any
-    >, any>> {
+    ): Promise<Either<ApiError<500, any> | ApiError<501, any> | ApiError<502, any> | ApiError<503, any>, any>> {
         try {
             const result: (any) = await __request(OpenAPI, {
                 method: 'POST',
@@ -3103,15 +3091,9 @@ export class ErrorService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            any
-            >> = {
+            const left: Left<ApiError<500, any> | ApiError<501, any> | ApiError<502, any> | ApiError<503, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                any
-                >),
+                left: e as (ApiError<500, any> | ApiError<501, any> | ApiError<502, any> | ApiError<503, any>),
             };
 
             return left;
@@ -3155,10 +3137,7 @@ export class HeaderService {
      * @returns string Successful response
      * @throws ApiError
      */
-    public static async callWithResultFromHeaderEither(): Promise<Either<ApiError<
-    200,
-    string
-    >, string>> {
+    public static async callWithResultFromHeaderEither(): Promise<Either<ApiError<400, any> | ApiError<500, any>, string>> {
         try {
             const result: (string) = await __request(OpenAPI, {
                 method: 'POST',
@@ -3177,15 +3156,9 @@ export class HeaderService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            string
-            >> = {
+            const left: Left<ApiError<400, any> | ApiError<500, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                string
-                >),
+                left: e as (ApiError<400, any> | ApiError<500, any>),
             };
 
             return left;
@@ -3224,10 +3197,7 @@ export class MultipleTags1Service {
      * @returns void
      * @throws ApiError
      */
-    public static async dummyAEither(): Promise<Either<ApiError<
-    200,
-    void
-    >, void>> {
+    public static async dummyAEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -3241,15 +3211,9 @@ export class MultipleTags1Service {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            void
-            >> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                void
-                >),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -3272,10 +3236,7 @@ export class MultipleTags1Service {
      * @returns void
      * @throws ApiError
      */
-    public static async dummyBEither(): Promise<Either<ApiError<
-    200,
-    void
-    >, void>> {
+    public static async dummyBEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -3289,15 +3250,9 @@ export class MultipleTags1Service {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            void
-            >> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                void
-                >),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -3336,10 +3291,7 @@ export class MultipleTags2Service {
      * @returns void
      * @throws ApiError
      */
-    public static async dummyAEither(): Promise<Either<ApiError<
-    200,
-    void
-    >, void>> {
+    public static async dummyAEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -3353,15 +3305,9 @@ export class MultipleTags2Service {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            void
-            >> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                void
-                >),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -3384,10 +3330,7 @@ export class MultipleTags2Service {
      * @returns void
      * @throws ApiError
      */
-    public static async dummyBEither(): Promise<Either<ApiError<
-    200,
-    void
-    >, void>> {
+    public static async dummyBEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -3401,15 +3344,9 @@ export class MultipleTags2Service {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            void
-            >> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                void
-                >),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -3448,10 +3385,7 @@ export class MultipleTags3Service {
      * @returns void
      * @throws ApiError
      */
-    public static async dummyBEither(): Promise<Either<ApiError<
-    200,
-    void
-    >, void>> {
+    public static async dummyBEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -3465,15 +3399,9 @@ export class MultipleTags3Service {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            void
-            >> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                void
-                >),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -3512,10 +3440,7 @@ export class NoContentService {
      * @returns void
      * @throws ApiError
      */
-    public static async callWithNoContentResponseEither(): Promise<Either<ApiError<
-    200,
-    void
-    >, void>> {
+    public static async callWithNoContentResponseEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -3529,15 +3454,9 @@ export class NoContentService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            void
-            >> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                void
-                >),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -3784,10 +3703,7 @@ export class ResponseService {
      * @returns ModelWithString Message for default response
      * @throws ApiError
      */
-    public static async callWithResponseEither(): Promise<Either<ApiError<
-    200,
-    ModelWithString
-    >, ModelWithString>> {
+    public static async callWithResponseEither(): Promise<Either<ApiError<number, any>, ModelWithString>> {
         try {
             const result: (ModelWithString) = await __request(OpenAPI, {
                 method: 'GET',
@@ -3801,15 +3717,9 @@ export class ResponseService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            ModelWithString
-            >> = {
+            const left: Left<ApiError<number, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                ModelWithString
-                >),
+                left: e as (ApiError<number, any>),
             };
 
             return left;
@@ -3837,10 +3747,7 @@ export class ResponseService {
      * @returns ModelWithString Message for default response
      * @throws ApiError
      */
-    public static async callWithDuplicateResponsesEither(): Promise<Either<ApiError<
-    200,
-    ModelWithString
-    >, ModelWithString>> {
+    public static async callWithDuplicateResponsesEither(): Promise<Either<ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>, ModelWithString>> {
         try {
             const result: (ModelWithString) = await __request(OpenAPI, {
                 method: 'POST',
@@ -3859,15 +3766,9 @@ export class ResponseService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            ModelWithString
-            >> = {
+            const left: Left<ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                ModelWithString
-                >),
+                left: e as (ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>),
             };
 
             return left;
@@ -3905,19 +3806,7 @@ export class ResponseService {
      * @returns ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
-    public static async callWithResponsesEither(): Promise<Either<ApiError<
-    200,
-    any
-    > | ApiError<
-    200,
-    ModelWithString
-    > | ApiError<
-    201,
-    ModelThatExtends
-    > | ApiError<
-    202,
-    ModelThatExtendsExtends
-    >, {
+    public static async callWithResponsesEither(): Promise<Either<ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>, {
         readonly '@namespace.string'?: string;
         readonly '@namespace.integer'?: number;
         readonly value?: Array<ModelWithString>;
@@ -3948,33 +3837,9 @@ export class ResponseService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            any
-            > | ApiError<
-            200,
-            ModelWithString
-            > | ApiError<
-            201,
-            ModelThatExtends
-            > | ApiError<
-            202,
-            ModelThatExtendsExtends
-            >> = {
+            const left: Left<ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                any
-                > | ApiError<
-                200,
-                ModelWithString
-                > | ApiError<
-                201,
-                ModelThatExtends
-                > | ApiError<
-                202,
-                ModelThatExtendsExtends
-                >),
+                left: e as (ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>),
             };
 
             return left;
@@ -4340,19 +4205,7 @@ export class TypesService {
         parameterBoolean: boolean = true,
         parameterObject: any = null,
         id?: number,
-    ): Promise<Either<ApiError<
-    200,
-    number
-    > | ApiError<
-    201,
-    string
-    > | ApiError<
-    202,
-    boolean
-    > | ApiError<
-    203,
-    any
-    >, number | string | boolean | any>> {
+    ): Promise<Either<ApiError<number, any>, number | string | boolean | any>> {
         try {
             const result: (number | string | boolean | any) = await __request(OpenAPI, {
                 method: 'GET',
@@ -4378,33 +4231,9 @@ export class TypesService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<
-            200,
-            number
-            > | ApiError<
-            201,
-            string
-            > | ApiError<
-            202,
-            boolean
-            > | ApiError<
-            203,
-            any
-            >> = {
+            const left: Left<ApiError<number, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<
-                200,
-                number
-                > | ApiError<
-                201,
-                string
-                > | ApiError<
-                202,
-                boolean
-                > | ApiError<
-                203,
-                any
-                >),
+                left: e as (ApiError<number, any>),
             };
 
             return left;
@@ -7641,7 +7470,7 @@ export class ComplexService {
             };
         },
         parameterReference: ModelWithString,
-    ): Promise<Either<ApiError<number, any>, Array<ModelWithString>>> {
+    ): Promise<Either<ApiError<400, any> | ApiError<500, any>, Array<ModelWithString>>> {
         try {
             const result: (Array<ModelWithString>) = await __request(OpenAPI, {
                 method: 'GET',
@@ -7663,9 +7492,9 @@ export class ComplexService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<number, any>> = {
+            const left: Left<ApiError<400, any> | ApiError<500, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<number, any>),
+                left: e as (ApiError<400, any> | ApiError<500, any>),
             };
 
             return left;
@@ -8452,7 +8281,7 @@ export class ErrorService {
      */
     public static async testErrorCodeEither(
         status: number,
-    ): Promise<Either<ApiError<number, any>, any>> {
+    ): Promise<Either<ApiError<500, any> | ApiError<501, any> | ApiError<502, any> | ApiError<503, any>, any>> {
         try {
             const result: (any) = await __request(OpenAPI, {
                 method: 'POST',
@@ -8475,9 +8304,9 @@ export class ErrorService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<number, any>> = {
+            const left: Left<ApiError<500, any> | ApiError<501, any> | ApiError<502, any> | ApiError<503, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<number, any>),
+                left: e as (ApiError<500, any> | ApiError<501, any> | ApiError<502, any> | ApiError<503, any>),
             };
 
             return left;
@@ -8596,7 +8425,7 @@ export class HeaderService {
      * @returns string Successful response
      * @throws ApiError
      */
-    public static async callWithResultFromHeaderEither(): Promise<Either<ApiError<number, any>, string>> {
+    public static async callWithResultFromHeaderEither(): Promise<Either<ApiError<400, any> | ApiError<500, any>, string>> {
         try {
             const result: (string) = await __request(OpenAPI, {
                 method: 'POST',
@@ -8615,9 +8444,9 @@ export class HeaderService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<number, any>> = {
+            const left: Left<ApiError<400, any> | ApiError<500, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<number, any>),
+                left: e as (ApiError<400, any> | ApiError<500, any>),
             };
 
             return left;
@@ -8790,7 +8619,7 @@ export class MultipleTags1Service {
      * @returns void
      * @throws ApiError
      */
-    public static async dummyAEither(): Promise<Either<ApiError<number, any>, void>> {
+    public static async dummyAEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -8804,9 +8633,9 @@ export class MultipleTags1Service {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<number, any>> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<number, any>),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -8829,7 +8658,7 @@ export class MultipleTags1Service {
      * @returns void
      * @throws ApiError
      */
-    public static async dummyBEither(): Promise<Either<ApiError<number, any>, void>> {
+    public static async dummyBEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -8843,9 +8672,9 @@ export class MultipleTags1Service {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<number, any>> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<number, any>),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -8884,7 +8713,7 @@ export class MultipleTags2Service {
      * @returns void
      * @throws ApiError
      */
-    public static async dummyAEither(): Promise<Either<ApiError<number, any>, void>> {
+    public static async dummyAEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -8898,9 +8727,9 @@ export class MultipleTags2Service {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<number, any>> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<number, any>),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -8923,7 +8752,7 @@ export class MultipleTags2Service {
      * @returns void
      * @throws ApiError
      */
-    public static async dummyBEither(): Promise<Either<ApiError<number, any>, void>> {
+    public static async dummyBEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -8937,9 +8766,9 @@ export class MultipleTags2Service {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<number, any>> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<number, any>),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -8978,7 +8807,7 @@ export class MultipleTags3Service {
      * @returns void
      * @throws ApiError
      */
-    public static async dummyBEither(): Promise<Either<ApiError<number, any>, void>> {
+    public static async dummyBEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -8992,9 +8821,9 @@ export class MultipleTags3Service {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<number, any>> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<number, any>),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -9033,7 +8862,7 @@ export class NoContentService {
      * @returns void
      * @throws ApiError
      */
-    public static async callWithNoContentResponseEither(): Promise<Either<ApiError<number, any>, void>> {
+    public static async callWithNoContentResponseEither(): Promise<Either<ApiError<204, any>, void>> {
         try {
             const result: (void) = await __request(OpenAPI, {
                 method: 'GET',
@@ -9047,9 +8876,9 @@ export class NoContentService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<number, any>> = {
+            const left: Left<ApiError<204, any>> = {
                 _tag: 'Left',
-                left: e as (ApiError<number, any>),
+                left: e as (ApiError<204, any>),
             };
 
             return left;
@@ -9556,7 +9385,7 @@ export class ResponseService {
      * @returns ModelWithString Message for default response
      * @throws ApiError
      */
-    public static async callWithDuplicateResponsesEither(): Promise<Either<ApiError<number, any>, ModelWithString>> {
+    public static async callWithDuplicateResponsesEither(): Promise<Either<ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>, ModelWithString>> {
         try {
             const result: (ModelWithString) = await __request(OpenAPI, {
                 method: 'POST',
@@ -9575,9 +9404,9 @@ export class ResponseService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<number, any>> = {
+            const left: Left<ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>> = {
                 _tag: 'Left',
-                left: e as (ApiError<number, any>),
+                left: e as (ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>),
             };
 
             return left;
@@ -9615,7 +9444,7 @@ export class ResponseService {
      * @returns ModelThatExtendsExtends Message for 202 response
      * @throws ApiError
      */
-    public static async callWithResponsesEither(): Promise<Either<ApiError<number, any>, {
+    public static async callWithResponsesEither(): Promise<Either<ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>, {
         readonly '@namespace.string'?: string;
         readonly '@namespace.integer'?: number;
         readonly value?: Array<ModelWithString>;
@@ -9646,9 +9475,9 @@ export class ResponseService {
 
             return right;
         } catch (e) {
-            const left: Left<ApiError<number, any>> = {
+            const left: Left<ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>> = {
                 _tag: 'Left',
-                left: e as (ApiError<number, any>),
+                left: e as (ApiError<500, ModelWithString> | ApiError<501, ModelWithString> | ApiError<502, ModelWithString>),
             };
 
             return left;
